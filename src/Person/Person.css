@@ -12,14 +12,3 @@ input {
     width: 50%;
     padding: 4px;
 }
-
-.button {
-    padding: 5px;
-    width: 15%;
-    font-size: 1rem;
-    background-color: rgb(16, 190, 45);
-    border: none;
-    color: white;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.192);
-    cursor: pointer;
-}

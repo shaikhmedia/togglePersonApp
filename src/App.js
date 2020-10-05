@@ -116,6 +116,7 @@ class App extends Component {
   render () {
     // Setting persons to null when showPersons is false
     let persons = null;
+    let button;
 
     // When showPersons is true
     if(this.state.showPersons) {
@@ -130,16 +131,19 @@ class App extends Component {
           />
         })}
       </div>
+      button = <button className='button red' onClick={this.togglePersonsHandler}>Hide Persons</button>
+    } else {
+      button = <button className='button' onClick={this.togglePersonsHandler}>Show Persons</button>
     };
 
     // Return the JSX
     return (
       <div className="App">
         {/* Title */}
-        <h1>Hi, I'm a React App</h1>
+        <h1>Person Toggle App</h1>
 
         {/* Button */}
-        <button className='button' onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        {button}
 
         {/* Persons JSX */}
         {persons}
