@@ -8,6 +8,6 @@ const persons = (props) => props.persons.map((person, index) => {
     name = {person.name} 
     age = {person.age} 
     key = {person.id}/>
-  })
+});
 
 export default persons;

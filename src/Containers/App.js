@@ -1,60 +1,8 @@
 import React, { Component } from 'react';
-// import React, { useState } from 'react';
-import Styles from './App.css';
-import '../Components/Persons/Person/Person.css';
-import Radium, {StyleRoot} from 'radium';
+import './App.css';
 import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Cockpit/Cockpit';
-
-
-// // State Management in function based component
-// const App = () => {
-//   // Setting default state
-//   const [personsState, setPersonsState] = useState({
-//     // Default person State
-//     persons: [
-//       {name: 'Max', age: 26},
-//       {name: 'Manu', age: 28},
-//       {name: 'Gandu', age: 33}
-//     ]
-//   });
-
-//   // Changing the state
-//   const switchNameHandler = () => {
-//     // Overwriting the default state
-//     setPersonsState({
-//       persons: [
-//         {name: 'Alamin', age: 26},
-//         {name: 'Rubel', age: 28},
-//         {name: 'Arif', age: 33}
-//       ]
-//     })
-//   };
-
-//   // Changing the state updating name value by input
-//   const updateNameHandler = (e) => {
-//     setPersonsState({
-//       persons: [
-//         {name: 'Max', age: 26},
-//         {name: e.target.value, age: 28},
-//         {name: 'Gandu', age: 33}
-//       ]
-//     })
-//   };
-
-//   // Return the JSX to print details on DOM
-//   return (
-//     <div className="App">
-//       <h1>Hi, I'm a React App</h1>
-//       <button onClick={switchNameHandler}>Change Name</button>
-//       <Person name={personsState.persons[0].name} age={personsState.persons[0].age}>My Hobby: Racing</Person>
-//       <Person name={personsState.persons[1].name} age={personsState.persons[1].age}>My Hobby: Gaming
-//       <input type="text" onChange={updateNameHandler}></input>
-//       </Person>
-//       <Person name={personsState.persons[2].name} age={personsState.persons[2].age}>My Hobby: Biking</Person>
-//     </div>
-//   );
-// };
+import Styles from '../Cockpit/Cockpit.module.css';
 
 // State Management in class based component
 class App extends Component {
@@ -119,41 +67,29 @@ class App extends Component {
   render () {
     // Setting persons to null when showPersons is false
     let person = null;
-    let buttonText = 'Hide Persons';
-    let buttonColor = Styles.button
 
     // When showPersons is true
     if(this.state.showPersons) {
       // Map through the persons array and use Person component for each
-      person = <div>
-        <Persons
+      person = <Persons
         persons={this.state.persons}
         delete={this.deleteNameHandler}
         update={this.updateNameHandler}/>
-      </div>
-
-      // Button background color red when persons are shown
-      buttonColor = Styles.red
-    } else {
-      buttonText = 'Show Persons';
     };
 
     // Return the JSX
     return (
-      <StyleRoot>
       <div className="App">
         {/* Cockpit JSX */}
         <Cockpit 
-        buttonText = {buttonText}
         togglePersons = {this.togglePersonsHandler}
-        style = {buttonColor}/>
+        showPersons = {this.state.showPersons}/>
 
         {/* Persons JSX */}
         {person}
       </div>
-      </StyleRoot>
     );
   };
 };
 
-export default Radium(App);
+export default App;
