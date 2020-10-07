@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 // import React, { useState } from 'react';
 import './App.css';
-import './Person/Person.css'
-import Radium from 'radium'
-import Person from './Person/Person';
+import '../Components/Persons/Person/Person.css';
+import Radium, {StyleRoot} from 'radium';
+import Persons from '../Components/Persons/Persons';
+import Cockpit from '../Cockpit/Cockpit'
 
 // // State Management in function based component
 // const App = () => {
@@ -116,61 +117,39 @@ class App extends Component {
   // Rendering to components to DOM
   render () {
     // Setting persons to null when showPersons is false
-    let persons = null;
+    let person = null;
     let buttonText = 'Hide Persons';
-
-    // Style for button
-    const style = {
-      padding: '7px',
-      width: '15%',
-      fontSize: '1rem',
-      backgroundColor: 'rgb(16, 190, 45)',
-      color: 'white',
-      border: 'none',
-      cursor: 'pointer',
-      borderRadius: '2px',
-      outline: 'none',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
 
     // When showPersons is true
     if(this.state.showPersons) {
-      persons = <div>
-        {this.state.persons.map((person, index) => {
-          return <Person
-          change = {(event) => this.updateNameHandler(event, person.id)}
-          click = {() => this.deleteNameHandler(index)}
-          name = {person.name} 
-          age = {person.age} 
-          key = {person.id}
-          />
-        })}
+      // Map through the persons array and use Person component for each
+      person = <div>
+        <Persons
+        persons={this.state.persons}
+        delete={this.deleteNameHandler}
+        update={this.updateNameHandler}/>
       </div>
+
       // Button background color red when persons are shown
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'rgb(250, 120, 150)',
-        color: 'white'
-      }
+
     } else {
       buttonText = 'Show Persons';
     };
 
     // Return the JSX
     return (
+      <StyleRoot>
       <div className="App">
-        {/* Title */}
-        <h1>Person Toggle App</h1>
-
-        {/* Button */}
-        <button className='button' style={style} onClick={this.togglePersonsHandler}>{buttonText}</button>
+        {/* Cockpit JSX */}
+        <Cockpit 
+        buttonText = {buttonText}
+        togglePersons = {this.togglePersonsHandler}
+        style = {style}/>
 
         {/* Persons JSX */}
-        {persons}
+        {person}
       </div>
+      </StyleRoot>
     );
   };
 };
