@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 // import React, { useState } from 'react';
-import './App.css';
+import Styles from './App.css';
 import '../Components/Persons/Person/Person.css';
 import Radium, {StyleRoot} from 'radium';
 import Persons from '../Components/Persons/Persons';
-import Cockpit from '../Cockpit/Cockpit'
+import Cockpit from '../Cockpit/Cockpit';
+
 
 // // State Management in function based component
 // const App = () => {
@@ -119,6 +120,7 @@ class App extends Component {
     // Setting persons to null when showPersons is false
     let person = null;
     let buttonText = 'Hide Persons';
+    let buttonColor = Styles.button
 
     // When showPersons is true
     if(this.state.showPersons) {
@@ -131,7 +133,7 @@ class App extends Component {
       </div>
 
       // Button background color red when persons are shown
-
+      buttonColor = Styles.red
     } else {
       buttonText = 'Show Persons';
     };
@@ -144,7 +146,7 @@ class App extends Component {
         <Cockpit 
         buttonText = {buttonText}
         togglePersons = {this.togglePersonsHandler}
-        style = {style}/>
+        style = {buttonColor}/>
 
         {/* Persons JSX */}
         {person}

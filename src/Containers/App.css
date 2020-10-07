@@ -16,7 +16,14 @@
 }
 
 .button:hover {
-  backgroundColor: 'lightgreen',
-  color: 'black'
+  background-color: lightgreen;
+  color: black;
 
+}
+
+.red {
+  background-color: red;
+}
+.red:hover {
+  background-color: salmon;
 }
