@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Cockpit/Cockpit';
-import Styles from '../Cockpit/Cockpit.module.css';
+import WithClass from '../hoc/WithClass';
 
 // State Management in class based component
 class App extends Component {
@@ -79,7 +79,7 @@ class App extends Component {
 
     // Return the JSX
     return (
-      <div className="App">
+      <WithClass class="App">
         {/* Cockpit JSX */}
         <Cockpit 
         togglePersons = {this.togglePersonsHandler}
@@ -87,7 +87,7 @@ class App extends Component {
 
         {/* Persons JSX */}
         {person}
-      </div>
+      </WithClass>
     );
   };
 };
